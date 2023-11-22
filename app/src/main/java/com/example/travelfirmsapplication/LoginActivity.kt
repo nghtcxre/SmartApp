@@ -13,6 +13,7 @@ import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.gotrue.gotrue
 import io.github.jan.supabase.gotrue.providers.builtin.Email
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -41,14 +42,14 @@ class LoginActivity : AppCompatActivity() {
                             email = textEmail.text.toString()
                             password = textPassword.text.toString()
                         }
-
+                        val intent = Intent(this@LoginActivity, Registration::class.java)
+                        startActivity(intent)
                     } catch (e: Exception) {
                         Log.e("Some error", e.toString())
                     }
                 }
             }
-            //val intent = Intent(this, Registration::class.java)
-            //startActivity(intent)
+
         }
     }
 
