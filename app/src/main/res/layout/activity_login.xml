@@ -55,13 +55,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEditField2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
         android:hint="Электронная почта"
-        android:orientation="horizontal"
         app:hintTextColor="#94949B"
+        android:textColorHint="#94949B"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2"
@@ -69,16 +68,13 @@
 
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editTextEmail"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:fontFamily="@font/montserrat_bold"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/black"
-            android:textColor="#94949B"
-            android:background="@android:color/transparent"
+            android:fontFamily="@font/montserrat_bold"
             android:textSize="15.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,29 +84,25 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEditField"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
         android:hint="Пароль"
-        android:orientation="horizontal"
         app:hintTextColor="#94949B"
+        android:textColorHint="#94949B"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/textEditField2"
         app:startIconContentDescription="@+id/textEditField">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextPassword"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:background="@android:color/transparent"
             android:fontFamily="@font/montserrat_bold"
             android:inputType="textPassword"
-            android:textColorHint="@color/black"
-            android:textColor="#94949B"
             android:textSize="15.5sp"
             android:textStyle="bold" />
 
@@ -142,6 +134,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:textAllCaps="false"
         android:textSize="15.5sp"
+        android:id="@+id/reg_btn"
         android:background="@drawable/buttonreg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

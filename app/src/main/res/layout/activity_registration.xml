@@ -53,95 +53,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/login_TextView"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textEditField3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8.8dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Имя пользователя"
-        android:textColor="#94949B"
-        android:textSize="12.4sp"
-        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:hint="Имя пользователя"
+        app:hintTextColor="#94949B"
+        android:textColorHint="#94949B"
         app:layout_constraintStart_toStartOf="@+id/bg_login"
-        app:layout_constraintTop_toTopOf="@+id/bg_login" />
+        app:layout_constraintTop_toTopOf="@+id/bg_login"
+        app:startIconContentDescription="@+id/imageView2">
 
-    <EditText
-        android:id="@+id/login_EditText"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:hint="usernametest"
-        android:inputType="text"
-        android:textColorHint="@color/black"
-        android:textSize="15.5sp"
-        app:layout_constraintEnd_toEndOf="@+id/bg_login"
-        app:layout_constraintStart_toStartOf="@+id/bg_login"
-        app:layout_constraintTop_toBottomOf="@id/login_TextView" />
 
-    <TextView
-        android:id="@+id/email_TextView"
-        android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="15.5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textEditField2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="6.6dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Электронная почта"
-        android:textColor="#94949B"
-        android:textSize="12.4sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/bg_login"
-        app:layout_constraintTop_toBottomOf="@id/login_EditText" />
-
-    <EditText
-        android:id="@+id/email_EditText"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:textSize="15.5sp"
-        android:hint="usernametest@mail.ru"
-        android:fontFamily="@font/montserrat_bold"
-        android:inputType="textEmailAddress"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_TextView" />
+        android:layout_marginTop="8dp"
+        android:hint="Электронная почта"
+        android:textColorHint="#94949B"
+        app:hintTextColor="#94949B"
+        app:layout_constraintTop_toBottomOf="@+id/textEditField3"
+        app:startIconContentDescription="@+id/imageView2">
 
 
-    <TextView
-        android:id="@+id/pass_TextView"
-        android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="15.5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textEditField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15px"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Пароль"
-        android:textColor="#94949B"
-        android:textSize="28px"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/bg_login"
-        app:layout_constraintTop_toBottomOf="@+id/email_EditText" />
+        android:layout_marginTop="8dp"
+        android:hint="Пароль"
+        app:hintTextColor="#94949B"
+        android:textColorHint="#94949B"
+        app:layout_constraintTop_toBottomOf="@+id/textEditField2"
+        app:startIconContentDescription="@+id/textEditField">
 
-    <EditText
-        android:id="@+id/pass_EditText"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:hint="*******"
-        android:inputType="textPassword"
-        android:textColorHint="@color/black"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="15.5sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass_TextView" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:inputType="textPassword"
+            android:textSize="15.5sp"
+            android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button1"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/reg_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
@@ -150,8 +142,10 @@
         android:fontFamily="@font/montserrat_bold"
         android:textAllCaps="false"
         android:textSize="15.5sp"
+        android:onClick="reg_Click"
         android:background="@drawable/buttonshape"
-        app:layout_constraintEnd_toEndOf="parent"        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bg_login" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -167,7 +161,7 @@
         android:background="@drawable/buttonreg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_button" />
 
 
 
