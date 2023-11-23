@@ -56,15 +56,15 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEditField3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:hint="Имя пользователя"
-        app:hintTextColor="#94949B"
         android:textColorHint="#94949B"
+        app:hintTextColor="#94949B"
+        app:layout_constraintEnd_toEndOf="@+id/bg_login"
         app:layout_constraintStart_toStartOf="@+id/bg_login"
-        app:layout_constraintTop_toTopOf="@+id/bg_login"
-        app:startIconContentDescription="@+id/imageView2">
+        app:layout_constraintTop_toTopOf="@+id/bg_login">
 
 
         <EditText
@@ -84,12 +84,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEditField2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Электронная почта"
         android:textColorHint="#94949B"
         app:hintTextColor="#94949B"
+        app:layout_constraintEnd_toEndOf="@+id/bg_login"
+        app:layout_constraintStart_toStartOf="@+id/bg_login"
         app:layout_constraintTop_toBottomOf="@+id/textEditField3"
         app:startIconContentDescription="@+id/imageView2">
 
@@ -110,12 +112,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textEditField"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Пароль"
-        app:hintTextColor="#94949B"
         android:textColorHint="#94949B"
+        app:hintTextColor="#94949B"
+        app:layout_constraintEnd_toEndOf="@+id/bg_login"
+        app:layout_constraintStart_toStartOf="@+id/bg_login"
         app:layout_constraintTop_toBottomOf="@+id/textEditField2"
         app:startIconContentDescription="@+id/textEditField">
 
@@ -154,6 +158,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24.4dp"
         android:text="Войти"
+        android:onClick="SignIn"
         android:textAllCaps="false"
         android:textSize="15.5sp"
         android:fontFamily="@font/montserrat_bold"

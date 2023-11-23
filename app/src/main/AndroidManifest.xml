@@ -15,21 +15,29 @@
         android:theme="@style/Theme.TravelFirmsApplication"
         tools:targetApi="31">
         <activity
-            android:name=".AddAdress"
-            android:exported="false" />
-        <activity
             android:name=".PinCode"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".AddAdress"
             android:exported="false" />
         <activity
+            android:name=".PinCodeCreate"
+            android:exported="false" />
+        <activity
+            android:name=".Registration"
+            android:exported="false">
+
+
+        </activity>
+        <activity
             android:name=".LoginActivity"
+            android:theme="@style/Theme.App.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

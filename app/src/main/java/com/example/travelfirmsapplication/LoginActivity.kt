@@ -1,12 +1,15 @@
 package com.example.travelfirmsapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
@@ -18,6 +21,7 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var sharedPreferences: SharedPreferences
     val supabaseClient = createSupabaseClient(
         supabaseUrl = "https://msrymwiawamltodzgdyr.supabase.co",
         supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zcnltd2lhd2FtbHRvZHpnZHlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA2NDg2NDYsImV4cCI6MjAxNjIyNDY0Nn0.3PrDR_z3J8nWHIrzlBjhRuJmN235jgDydjUX8Xlj01s"
@@ -25,10 +29,17 @@ class LoginActivity : AppCompatActivity() {
         install(GoTrue)
         install(Postgrest)
     }
-    val goTrue = supabaseClient.gotrue;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Thread.sleep(3000)
+        installSplashScreen()
         setContentView(R.layout.activity_login)
+
+
+        sharedPreferences = getSharedPreferences("SHERED_PREF", Context.MODE_PRIVATE)
+        if(!sharedPreferences.getBoolean("ISREG",false)){
+            startActivity(Intent(this, Registration::class.java))
+        }
 
         val textEmail: EditText = findViewById(R.id.editTextEmail)
         val textPassword: EditText = findViewById(R.id.editTextPassword)
@@ -42,8 +53,14 @@ class LoginActivity : AppCompatActivity() {
                             email = textEmail.text.toString()
                             password = textPassword.text.toString()
                         }
-                        val intent = Intent(this@LoginActivity, Registration::class.java)
-                        startActivity(intent)
+                        if (!sharedPreferences.getBoolean("pincode", false)){
+                            val intent = Intent(this@LoginActivity, PinCode::class.java)
+                            startActivity(intent)
+                        }
+                        else if (sharedPreferences.getBoolean("pincode", false)){
+                            val intent = Intent(this@LoginActivity, PinCodeCreate::class.java)
+                            startActivity(intent)
+                        }
                     } catch (e: Exception) {
                         Log.e("Some error", e.toString())
                     }

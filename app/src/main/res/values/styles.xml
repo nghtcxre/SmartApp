@@ -8,9 +8,9 @@
     </style>
 
     <style name="CircleStyle">
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_width">17.7dp</item>
+        <item name="android:layout_height">17.7dp</item>
+        <item name="android:layout_margin">13dp</item>
         <item name="android:background">@drawable/circle_background</item>
     </style>
 </resources>

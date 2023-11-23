@@ -43,6 +43,8 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:postgrest-kt")
     implementation("io.github.jan-tennert.supabase:realtime-kt")
 
+    implementation("androidx.core:core-splashscreen:1.0.1")
+
     implementation("io.ktor:ktor-client-cio:2.3.4")
 
     implementation("androidx.core:core-ktx:1.9.0")

@@ -4,4 +4,10 @@
         <item name="colorControlActivated">@color/black</item>
     </style>
     <style name="Theme.TravelFirmsApplication" parent="Base.Theme.TravelFirmsApplication" />
+
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.TravelFirmsApplication</item>
+    </style>
 </resources>

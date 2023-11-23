@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent"
+    tools:context=".PinCodeCreate">
+
+    <ImageView
+        android:id="@+id/bg_login"
+        android:layout_width="297.7dp"
+        android:layout_height="246.6dp"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/box_three"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bgd_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bgd_linear"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="86.2dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="49.3dp"
+        android:src="@drawable/logotype"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="150dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.8dp"
+        android:text="Создайте пин-код"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:textSize="21.3sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/bgd_linear"
+        app:layout_constraintStart_toStartOf="@+id/bgd_linear"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/circle1"
+            style="@style/CircleStyle" />
+
+        <ImageView
+            android:id="@+id/circle2"
+            style="@style/CircleStyle" />
+
+        <ImageView
+            android:id="@+id/circle3"
+            style="@style/CircleStyle" />
+
+        <ImageView
+            android:id="@+id/circle4"
+            style="@style/CircleStyle" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_login"
+        app:layout_constraintEnd_toEndOf="@+id/bg_login"
+        app:layout_constraintStart_toStartOf="@+id/bg_login"
+        app:layout_constraintTop_toTopOf="@+id/bg_login">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn1"
+                android:layout_width="71.5dp"
+                android:layout_height="57.3dp"
+                android:layout_margin="11dp"
+                android:text="1"
+                android:fontFamily="@font/montserrat_light"
+                android:textSize="28sp"
+                android:background="@drawable/pincode_btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn2"
+                android:layout_width="71.5dp"
+                android:layout_height="57.3dp"
+                android:text="2"
+                android:layout_margin="11dp"
+                android:fontFamily="@font/montserrat_light"
+                android:textSize="28sp"
+                android:background="@drawable/pincode_btn" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn3"
+                android:layout_width="71.5dp"
+                android:layout_height="57.3dp"
+                android:text="3"
+                android:layout_margin="11dp"
+                android:fontFamily="@font/montserrat_light"
+                android:textSize="28sp"
+                android:background="@drawable/pincode_btn" />
+        </LinearLayout>
+
+        <LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn4"
+        android:layout_width="71.5dp"
+        android:layout_height="57.3dp"
+        android:text="4"
+        android:layout_margin="11dp"
+        android:fontFamily="@font/montserrat_light"
+        android:textSize="28sp"
+        android:background="@drawable/pincode_btn" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn5"
+        android:layout_width="71.5dp"
+        android:layout_height="57.3dp"
+        android:text="5"
+        android:layout_margin="11dp"
+        android:fontFamily="@font/montserrat_light"
+        android:textSize="28sp"
+        android:background="@drawable/pincode_btn" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn6"
+        android:layout_width="71.5dp"
+        android:layout_height="57.3dp"
+        android:text="6"
+        android:layout_margin="11dp"
+        android:fontFamily="@font/montserrat_light"
+        android:textSize="28sp"
+        android:background="@drawable/pincode_btn" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn7"
+            android:layout_width="71.5dp"
+            android:layout_height="57.3dp"
+            android:text="7"
+            android:layout_margin="11dp"
+            android:fontFamily="@font/montserrat_light"
+            android:textSize="28sp"
+            android:background="@drawable/pincode_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn8"
+            android:layout_width="71.5dp"
+            android:layout_height="57.3dp"
+            android:text="8"
+            android:layout_margin="11dp"
+            android:fontFamily="@font/montserrat_light"
+            android:textSize="28sp"
+            android:background="@drawable/pincode_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn9"
+            android:layout_width="71.5dp"
+            android:layout_height="57.3dp"
+            android:text="9"
+            android:layout_margin="11dp"
+            android:fontFamily="@font/montserrat_light"
+            android:textSize="28sp"
+            android:background="@drawable/pincode_btn" />
+
+    </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
