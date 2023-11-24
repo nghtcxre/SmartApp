@@ -89,7 +89,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15.5sp"
-        android:onClick="CheckPinCode"
+        android:onClick="ExitFromPinCode"
         android:layout_marginTop="41.7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

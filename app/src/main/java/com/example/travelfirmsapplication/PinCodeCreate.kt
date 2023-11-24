@@ -16,13 +16,12 @@ class PinCodeCreate : AppCompatActivity() {
     private lateinit var circle2: ImageView
     private lateinit var circle3: ImageView
     private lateinit var circle4: ImageView
-    lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pincode_create)
-        sharedPreferences = getSharedPreferences("PinCode", Context.MODE_PRIVATE)
-        
+        sharedPreferences = getSharedPreferences("SHERED_PREF", Context.MODE_PRIVATE)
         pinDigits = StringBuilder()
         circle1 = findViewById(R.id.circle1)
         circle2 = findViewById(R.id.circle2)
@@ -35,8 +34,15 @@ class PinCodeCreate : AppCompatActivity() {
                     pinDigits.append(view.text)
                     updateCircleIndicators()
                 }
-            }
-        }
+
+                if (pinDigits.length == 4) {
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putBoolean("HAS_PIN_CODE", true)
+                    editor.putString("PIN_CODE", pinDigits.toString())
+                    editor.apply()
+                    val pinCodeIntent = Intent(this@PinCodeCreate, AddAddress::class.java)
+                    startActivity(pinCodeIntent)
+                    finish() } } }
 
         val buttons = arrayOf(
             findViewById<Button>(R.id.btn1),
@@ -55,22 +61,18 @@ class PinCodeCreate : AppCompatActivity() {
 
     private fun updateCircleIndicators() {
         when (pinDigits.length) {
-            1 -> circle1.setBackgroundResource(R.drawable.circle_filled_background)
-            2 -> circle2.setBackgroundResource(R.drawable.circle_filled_background)
-            3 -> circle3.setBackgroundResource(R.drawable.circle_filled_background)
+            1 -> {
+                circle1.setBackgroundResource(R.drawable.circle_filled_background)
+            }
+            2 -> {
+                circle2.setBackgroundResource(R.drawable.circle_filled_background)
+            }
+            3 -> {
+                circle3.setBackgroundResource(R.drawable.circle_filled_background)
+            }
             4 -> { 
-                circle4.setBackgroundResource(R.drawable.circle_filled_background) 
-                //savePinCode(pinDigits.toString())
-                val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                val ispin:Boolean = true
-                editor.putBoolean("pincode", ispin)
-                editor.putString("pincode", pinDigits.toString())
-                editor.apply()
-                startActivity(Intent(this, AddAdress::class.java))
-            
-            } }
-    }
-
-    private fun savePinCode(pincode: String) {
+                circle4.setBackgroundResource(R.drawable.circle_filled_background)
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.gotrue.gotrue
@@ -22,13 +23,8 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
-    val supabaseClient = createSupabaseClient(
-        supabaseUrl = "https://msrymwiawamltodzgdyr.supabase.co",
-        supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zcnltd2lhd2FtbHRvZHpnZHlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA2NDg2NDYsImV4cCI6MjAxNjIyNDY0Nn0.3PrDR_z3J8nWHIrzlBjhRuJmN235jgDydjUX8Xlj01s"
-    ) {
-        install(GoTrue)
-        install(Postgrest)
-    }
+    val SBclient: SupabaseClient = CreateSupabaseClient().SBclient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Thread.sleep(3000)
@@ -49,17 +45,19 @@ class LoginActivity : AppCompatActivity() {
             if(textEmail.text.toString() != "" && textPassword.text.toString() != ""){
                 lifecycleScope.launch {
                     try {
-                        supabaseClient.gotrue.loginWith(Email) {
+                        SBclient.gotrue.loginWith(Email) {
                             email = textEmail.text.toString()
                             password = textPassword.text.toString()
                         }
-                        if (!sharedPreferences.getBoolean("pincode", false)){
-                            val intent = Intent(this@LoginActivity, PinCode::class.java)
-                            startActivity(intent)
-                        }
-                        else if (sharedPreferences.getBoolean("pincode", false)){
-                            val intent = Intent(this@LoginActivity, PinCodeCreate::class.java)
-                            startActivity(intent)
+                        val hasPinCode = sharedPreferences.getBoolean("HAS_PIN_CODE", false)
+                        if (!hasPinCode) {
+                            val pinCodeIntent = Intent(this@LoginActivity, PinCodeCreate::class.java)
+                            startActivity(pinCodeIntent)
+                            finish()
+                        } else {
+                            val pinCodeIntent = Intent(this@LoginActivity, PinCode::class.java)
+                            startActivity(pinCodeIntent)
+                            finish()
                         }
                     } catch (e: Exception) {
                         Log.e("Some error", e.toString())

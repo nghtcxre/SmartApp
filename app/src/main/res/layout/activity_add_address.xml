@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddAdress">
+    tools:context=".AddAddress">
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -47,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/textInputEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +70,7 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="Сохранить"
         android:textAllCaps="false"
+        android:onClick="SaveAddress"
         android:textColor="@color/white"
         android:textSize="17.7sp"
         app:layout_constraintEnd_toEndOf="parent"
