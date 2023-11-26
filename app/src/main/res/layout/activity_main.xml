@@ -7,6 +7,17 @@
     tools:context=".MainActivity">
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:scaleType="centerCrop"
@@ -46,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5.7dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="г. Омск, ул. Ленина, д. 24"
+        android:text=""
         android:textColor="#94949B"
         android:textSize="12.4sp"
         android:textStyle="bold"
@@ -81,7 +92,9 @@
         android:layout_marginTop="17.3dp"
         android:layout_marginEnd="20.8dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/btn_settings"
+        android:src="@drawable/setting_white"
+        android:onClick="toProfile"
+        android:background="@drawable/blue_bgd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,5 +116,7 @@
         android:src="@drawable/btn_plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,9 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -28,31 +30,42 @@ import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
 
-    val SBclient: SupabaseClient = CreateSupabaseClient().SBclient
-    val roomsL: ArrayList<Room> = ArrayList()
+    private val SBclient: SupabaseClient = CreateSupabaseClient().SBclient
+    private val roomsL: ArrayList<Room> = ArrayList()
+
     private val adapter = RoomsListAdapter(roomsL, object:RoomsListAdapter.ItemClickListener{
         override fun onItemClick(position: Int) {
-            val bundle = Bundle()
-            bundle.putString("page", "devicesInRoom")
-            bundle.putInt("roomId", roomsL[position].id)
-            intent = Intent(applicationContext, MainActivity::class.java)
-            intent.putExtras(bundle)
-            startActivity(intent)
+            //val bundle = Bundle()
+            //bundle.putString("page", "devicesInRoom")
+            //bundle.putInt("roomId", roomsL[position].id)
         }
     })
 
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Load_rooms_by_user()
+
+        progressBar = findViewById(R.id.progressBar)
+
         val recycler: RecyclerView = findViewById(R.id.recyclerRooms)
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
+        Load_rooms_by_user()
 
     }
 
+    private fun showLoadingIndicator() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingIndicator() {
+        progressBar.visibility = View.GONE
+    }
+
     private fun Load_rooms_by_user() {
+        showLoadingIndicator()
         roomsL.clear()
         lifecycleScope.launch {
             try {
@@ -75,10 +88,17 @@ class MainActivity : AppCompatActivity() {
                     val type = obj.getString("type")
                     roomsL.add(Room(id,name,type))
                 }
+                hideLoadingIndicator()
                 adapter.notifyDataSetChanged()
             } catch (e: Exception){
                 Log.e("FAACCRRR", e.toString())
+                hideLoadingIndicator()
             }
         }
+    }
+
+    fun toProfile(view: View) {
+        intent = Intent(this@MainActivity, ProfileActivity::class.java)
+        startActivity(intent)
     }
 }
