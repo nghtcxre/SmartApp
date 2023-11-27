@@ -58,7 +58,7 @@ class RoomsListAdapter(private val list_rooms: ArrayList<Room>, private val item
                     val bucket = SBclient.storage["imgs"]
                     val bytes_one = bucket.downloadPublic("bathroom.png")
                     val bytes_two = bucket.downloadPublic("beg.png")
-                    val bytes_three = bucket.downloadPublic("kitchen.png")
+                    val bytes_three = bucket.downloadPublic("kitchen.ng")
                     val bytes_four = bucket.downloadPublic("living.png")
                     val bytes_five = bucket.downloadPublic("office.png")
                     val bytes_six = bucket.downloadPublic("tv.png")

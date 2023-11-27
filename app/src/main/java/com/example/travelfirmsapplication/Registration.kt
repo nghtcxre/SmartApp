@@ -46,7 +46,7 @@ class Registration : AppCompatActivity() {
                     editor.putBoolean("ISREG",isreg)
                     editor.apply()
                     val user = SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
-                    val userAdd = User(id = user.id,name = usernameEditText.text.toString())
+                    val userAdd = User(id = user.id,name = usernameEditText.text.toString(), address = "")
                     SBclient.postgrest["Users"].insert(userAdd)
                     val regIntent = Intent(this@Registration, PinCodeCreate::class.java)
                     startActivity(regIntent)

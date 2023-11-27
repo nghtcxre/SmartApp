@@ -57,12 +57,12 @@ class ProfileActivity : AppCompatActivity() {
                 val userNameRespone = SBclient.postgrest["Users"].select(columns = Columns.list("name")){
                     eq("id", user.id)
                 }.decodeSingle<User>()
+                usernameEditText.setText(userNameRespone.name)
                 val addressResponse = SBclient.postgrest["Users"].select(columns = Columns.list("address")){
                     eq("id", user.id)
                 }.decodeSingle<User>()
-                usernameEditText.setText(userNameRespone.name)
-                emailEditText.setText(user.email)
                 addressEditText.setText(addressResponse.address)
+                emailEditText.setText(user.email)
 
             } catch (e: Exception){
                 Log.e("Error", e.toString())
@@ -127,10 +127,10 @@ class ProfileActivity : AppCompatActivity() {
     fun modifyUser(view: View) {
         lifecycleScope.launch {
             try {
-                val user = SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
-                SBclient.gotrue.modifyUser(true){
+                SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
+                SBclient.gotrue.modifyUser {
                     email = emailEditText.text.toString()
-               }
+                }
             } catch (e: Exception){
                 Log.e("Error", e.toString())
             }

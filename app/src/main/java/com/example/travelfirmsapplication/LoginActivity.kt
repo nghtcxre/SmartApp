@@ -30,12 +30,10 @@ class LoginActivity : AppCompatActivity() {
         Thread.sleep(3000)
         installSplashScreen()
         setContentView(R.layout.activity_login)
-
-
         sharedPreferences = getSharedPreferences("SHERED_PREF", Context.MODE_PRIVATE)
-        if(!sharedPreferences.getBoolean("ISREG",false)){
-            startActivity(Intent(this, Registration::class.java))
-        }
+        //if(!sharedPreferences.getBoolean("ISREG",false)){
+        //    startActivity(Intent(this, Registration::class.java))
+       // }
 
         val textEmail: EditText = findViewById(R.id.editTextEmail)
         val textPassword: EditText = findViewById(R.id.editTextPassword)
