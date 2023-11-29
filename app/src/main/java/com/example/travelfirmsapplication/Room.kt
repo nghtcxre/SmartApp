@@ -1,6 +1,5 @@
 package com.example.travelfirmsapplication
 
-import kotlinx.serialization.Serializable
+import android.graphics.drawable.Drawable
 
-@Serializable
-data class Room(val id: Int, val name: String = "", val type: String = "")
+data class Room(val id: String = "", val name: String = "", val type: String = "")
