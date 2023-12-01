@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_marginBottom="10dp">
+
+    <ImageButton
+        android:id="@+id/imageRoomImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"
+        android:background="@drawable/round_room"
+        android:padding="11.1dp"
+        android:src="@drawable/bed" />
+
+    <TextView
+        android:id="@+id/nameRoomTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Кухня"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="#94949B"
+        android:textSize="12.4sp"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center"
+        android:textAlignment="center" />
+</LinearLayout>

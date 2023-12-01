@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.gotrue.OtpType
@@ -54,18 +55,16 @@ class ProfileActivity : AppCompatActivity() {
                 usernameEditText = findViewById(R.id.usernameEditText)
                 emailEditText = findViewById(R.id.emailEditText)
                 val user = SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
-                val userNameRespone = SBclient.postgrest["Users"].select(columns = Columns.list("name")){
+                val response = SBclient.postgrest["Users"].select(columns = Columns.list("name", "address")){
                     eq("id", user.id)
                 }.decodeSingle<User>()
-                usernameEditText.setText(userNameRespone.name)
-                val addressResponse = SBclient.postgrest["Users"].select(columns = Columns.list("address")){
-                    eq("id", user.id)
-                }.decodeSingle<User>()
-                addressEditText.setText(addressResponse.address)
+                usernameEditText.setText(response.name)
+                addressEditText.setText(response.address)
                 emailEditText.setText(user.email)
 
             } catch (e: Exception){
-                Log.e("Error", e.toString())
+                Toast.makeText(applicationContext, "Произошла ошибка при загрузке данных", Toast.LENGTH_SHORT).show()
+                Log.e("Some Error", e.toString())
             }
         }
     }
@@ -124,6 +123,7 @@ class ProfileActivity : AppCompatActivity() {
         finish()
     }
 
+
     fun modifyUser(view: View) {
         lifecycleScope.launch {
             try {
@@ -137,4 +137,5 @@ class ProfileActivity : AppCompatActivity() {
         }
 
     }
+
 }

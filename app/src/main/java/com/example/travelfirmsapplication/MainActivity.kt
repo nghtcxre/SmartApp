@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,13 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     private val SBclient: SupabaseClient = CreateSupabaseClient().SBclient
     private val roomsL: ArrayList<DataRoom> = ArrayList()
-    private lateinit var array: JSONArray
 
     private val adapter = RoomsListAdapter(roomsL, object:RoomsListAdapter.ItemClickListener{
         override fun onItemClick(position: Int) {
-            //val bundle = Bundle()
-            //bundle.putString("page", "devicesInRoom")
-            //bundle.putInt("roomId", roomsL[position].id)
+
         }
     })
 
@@ -71,18 +69,9 @@ class MainActivity : AppCompatActivity() {
                     eq("id", user.id)
                 }.decodeSingle<User>()
                 TextAddress.text = response.address
-
-                val rooms = SBclient.postgrest["Rooms"]
-                    .select(
-                        columns = Columns.raw(""" id, name, rooms_name Rooms_Type ( rooms_avatars ) """)
-                    )
-                    {
-                        eq("user_id", user.id)
-                    }
-
-/*                val rooms = SBclient.postgrest["Rooms"].select() {
+                val rooms = SBclient.postgrest["Rooms"].select() {
                     eq("user_id", user.id)
-                }.body.toString()*/
+                }.body.toString()
                 val builder = StringBuilder()
                 builder.append(rooms).append("\n")
                 val root = JSONArray(builder.toString())
@@ -90,38 +79,32 @@ class MainActivity : AppCompatActivity() {
                     val obj = root.getJSONObject(i)
                     val id = obj.getString("id")
                     val name = obj.getString("name")
-                    //val img = obj.getString("rooms_name")
-                    val rooms_type_id = obj.getString("rooms_type_id")
-                    val img = obj.getString("rooms_avatars")
-                    //val img = rooms_type_id
-                     lifecycleScope.launch {
-                        try{
-                            val bucket = SBclient.storage["imgs"]
-                            val bytes = bucket.downloadPublic(img)
-                            val is1: InputStream = ByteArrayInputStream(bytes)
-                            val bmp: Bitmap = BitmapFactory.decodeStream(is1)
-                            val dr = BitmapDrawable(resources, bmp)
-                            val rooms = DataRoom(id, rooms_type_id, name, dr)
-                            roomsL.add(rooms)
-                        }
-                        catch (e: Exception){
-                            Log.e("!!!!!", e.toString())
-                        }
-                    }
+                    val roomsType = obj.getString("rooms_type_id")
+                    val img = "$roomsType.png"
+                    val bucket = SBclient.storage["imgs"]
+                    val bytes = bucket.downloadPublic(img)
+                    val is1: InputStream = ByteArrayInputStream(bytes)
+                    val bmp: Bitmap = BitmapFactory.decodeStream(is1)
+                    val dr = BitmapDrawable(resources, bmp)
+                    roomsL.add(DataRoom(id,roomsType,name,dr))
                 }
                 hideLoadingIndicator()
                 adapter.notifyDataSetChanged()
             } catch (e: Exception){
-                Log.e("FAACCRRR", e.toString())
+                Toast.makeText(applicationContext, "Ошибка при загрузке комнат", Toast.LENGTH_LONG).show()
+                Log.e("Some Error", e.toString())
                 hideLoadingIndicator()
             }
         }
     }
 
-
-
     fun toProfile(view: View) {
         intent = Intent(this@MainActivity, ProfileActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun AddRoom(view: View) {
+        intent = Intent(this@MainActivity, AddRoom::class.java)
         startActivity(intent)
     }
 }

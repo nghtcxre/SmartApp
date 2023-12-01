@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -34,6 +35,27 @@ class Registration : AppCompatActivity() {
         passwordEditText = findViewById(R.id.editTextPassword) }
 
         fun reg_Click(view: View) {
+            val usernameT = usernameEditText.text.toString()
+            val emailT = emailEditText.text.toString()
+            val passwordT = passwordEditText.text.toString()
+
+            if (!isValidUsername(usernameT)) {
+                // Имя пользователя не соответствует стандартам
+                Toast.makeText(applicationContext, "Некорректное имя пользователя", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailT).matches()) {
+                // Некорректный формат электронной почты
+                Toast.makeText(applicationContext, "Некорректный формат электронной почты", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (passwordT.length < 6) {
+                // Некорректная длина пароля
+                Toast.makeText(applicationContext, "Пароль должен содержать минимум 6 символов", Toast.LENGTH_SHORT).show()
+                return
+            }
 
             lifecycleScope.launch {
                 try {
@@ -53,11 +75,17 @@ class Registration : AppCompatActivity() {
                     finish()
                 }
                 catch (e: Exception) {
+                    Toast.makeText(applicationContext, "Ошибка при регистрации: ${e.message}", Toast.LENGTH_SHORT).show()
                     Log.e("!!!!", e.toString())
                 }
 
             }
         }
+
+    fun isValidUsername(username: String): Boolean {
+        return username.matches("[a-zA-Z0-9_]*".toRegex())
+    }
+
 
     fun SignIn(view: View) {
         val signIn = Intent(this@Registration, LoginActivity::class.java)

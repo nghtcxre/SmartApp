@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -17,6 +18,7 @@ import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
 import java.lang.reflect.Array.set
+import java.util.regex.Pattern
 
 class AddAddress : AppCompatActivity() {
 
@@ -33,27 +35,40 @@ class AddAddress : AppCompatActivity() {
     }
 
     fun SaveAddress(view: View) {
-        lifecycleScope.launch {
-            try {
-                val user = SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
-                SBclient.postgrest["Users"].update(
-                    {
-                        set("address", textInputEditText.text.toString())
+        val addressPattern = Pattern.compile("г\\. [\\p{L} ]+, ул\\. [\\p{L} ]+, д\\. \\d+")
+        val userInput = textInputEditText.text.toString()
+        if (isValidAddress(userInput, addressPattern)){
+            lifecycleScope.launch {
+                try {
+                    val user = SBclient.gotrue.retrieveUserForCurrentSession(updateSession = true)
+                    SBclient.postgrest["Users"].update(
+                        {
+                            set("address", textInputEditText.text.toString())
+                        }
+                    ) {
+                        eq("id", user.id)
                     }
-                ) {
-                    eq("id", user.id)
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putBoolean("HAS_ADDRESS", true)
+                    editor.apply()
+                    val mainIntent = Intent(this@AddAddress, MainActivity::class.java)
+                    startActivity(mainIntent)
+                    finish()
+                }
+
+                catch (e: Exception) {
+                    Log.e("AddAddress", e.toString())
                 }
             }
-            catch (e: Exception) {
-                Log.e("AddAddress", e.toString())
-            }
-        }
-        val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putBoolean("HAS_ADDRESS", true)
-        editor.apply()
-        val mainIntent = Intent(this@AddAddress, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
 
+        }
+        else{
+            Toast.makeText(applicationContext, "Введите адрес согласно формату", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun isValidAddress(address: String, pattern: Pattern): Boolean {
+        val matcher = pattern.matcher(address)
+        return matcher.matches()
     }
 }
